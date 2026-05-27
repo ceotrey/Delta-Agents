@@ -1,0 +1,2237 @@
+{
+  "name": "🧠 AI Delta Response System v3",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fe696ec2-ea68-446e-ab1a-3e0d2ce3eaab22dssdsds",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        688
+      ],
+      "id": "f0e51388-ba0c-49f6-8d8c-3dd9e9cb34d0",
+      "name": "Webhook",
+      "webhookId": "fe696ec2-ea68-446e-ab1a-3e0d2ce3eaab"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d0a49326-987e-4b46-b64a-b0a43f33917a",
+                    "leftValue": "={{ $('Get Existing Messages').item.json.id }}",
+                    "rightValue": "=[null]",
+                    "operator": {
+                      "type": "number",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "exists"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6e4161cd-a082-4a34-b3f7-b36b20e7d714",
+                    "leftValue": "={{ $('Get Existing Messages').item.json.id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "does not exist"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -736,
+        928
+      ],
+      "id": "0c2e1eae-8458-45a7-8dbe-532d0f67eced",
+      "name": "Message Key?",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0023d117-f6de-47d9-beee-f6b9c14682e8",
+                    "leftValue": "={{ $json.error }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.error }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "72d3027d-73ef-49f5-a05b-6f8a9a6f7ce8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Error"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        976,
+        960
+      ],
+      "id": "30933cca-bff6-4b4a-84e3-f248390319bb",
+      "name": "Status2"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        1152
+      ],
+      "id": "49c82ef7-9c25-464c-ae53-766ab707be12",
+      "name": "Wait 1 minute",
+      "webhookId": "b9d6fdfb-4074-4684-a85e-d7aad4100823"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "980d4e1e-52e3-4471-b18f-a64d80453b77",
+              "name": "custom_field_id_assistant_chat_last_message",
+              "value": "9SEsSFC1RO99mL8bSbdO",
+              "type": "string"
+            },
+            {
+              "id": "0dda43e3-f113-4f8c-a81d-f7e2fe433461",
+              "name": "calendar_id",
+              "value": "6L926WGMDokCB1iewxph",
+              "type": "string"
+            },
+            {
+              "id": "d3f4155d-b158-4db0-bbde-8e0000c092e7",
+              "name": "account_timezone",
+              "value": "America/New_York",
+              "type": "string"
+            },
+            {
+              "id": "214eca8a-c5ad-4a0b-823d-71a2052b22a8",
+              "name": "ai_follow_up_calendar_id",
+              "value": "DIhdDYQ7dpsJYmhhGUiv",
+              "type": "string"
+            },
+            {
+              "id": "ee93a817-467a-4298-b605-3e89c536f645",
+              "name": "private_integration",
+              "value": "pit-c91b932f-dc30-450c-beb0-665d3eab1cd7",
+              "type": "string"
+            },
+            {
+              "id": "b3917e38-62df-4f77-9a4d-43d2bef1eec3",
+              "name": "location_id",
+              "value": "AAkH7HElm4P71031tOqB",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1536,
+        688
+      ],
+      "id": "a2c1e291-a474-4fcf-884a-957b2ccf0131",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0023d117-f6de-47d9-beee-f6b9c14682e8",
+                    "leftValue": "={{ $json.error }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.error }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "72d3027d-73ef-49f5-a05b-6f8a9a6f7ce8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Error"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -672,
+        144
+      ],
+      "id": "d0da3cf9-c216-4193-97a6-19082401baa1",
+      "name": "Status"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        336
+      ],
+      "id": "fb3e5616-ec80-4502-9c7a-a34190783736",
+      "name": "Wait 1 minute1",
+      "webhookId": "c59fc62b-fb81-4073-adb2-75f971fd2288"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.tags }}",
+                    "rightValue": "ai follow up",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "f90c303e-ad7c-4687-9ac7-ffa2537932c7"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AI Follow Up"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5845fe9f-3d8c-43c8-92d0-dac49ef53e76",
+                    "leftValue": "={{ $('Webhook').item.json.body.tags }}",
+                    "rightValue": "ai follow up",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Regular Convo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1312,
+        688
+      ],
+      "id": "14b684d0-3561-46dc-a482-bc451c5c8cd7",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fh9vv0YRTuN9zdaQ",
+          "mode": "list",
+          "cachedResultName": "bot",
+          "cachedResultUrl": "/projects/UYhk0gq0bExYowC6/datatables/Fh9vv0YRTuN9zdaQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "contact": "={{ $('Webhook').item.json.body.contact_id }}",
+            "message": "={{ $('Webhook').item.json.body['User Last Message'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "contact",
+              "displayName": "contact",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        1024
+      ],
+      "id": "2839cb69-636e-4372-8ee9-658465c44768",
+      "name": "Create Message",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fh9vv0YRTuN9zdaQ",
+          "mode": "list",
+          "cachedResultName": "bot",
+          "cachedResultUrl": "/projects/UYhk0gq0bExYowC6/datatables/Fh9vv0YRTuN9zdaQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact",
+              "keyValue": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        1024
+      ],
+      "id": "e280f208-6b07-4ddf-b324-f9071de1c179",
+      "name": "Get full message",
+      "alwaysOutputData": true,
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2cef72a1-4bb9-4422-a101-91373bdc26d7",
+              "name": "retry_count",
+              "value": "={{ ($json.retryCount ?? 0) + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        864
+      ],
+      "id": "64a18a20-7726-408a-9978-d4a26adefca4",
+      "name": "Retry Count"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fd81e966-bac5-4275-a23b-d5ec835e4bf5",
+              "leftValue": "={{ $json.retry_count }}",
+              "rightValue": 4,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1424,
+        864
+      ],
+      "id": "e866f222-7ac8-4cb7-b750-47568ac4b452",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "an error has ocurred!"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        816
+      ],
+      "id": "01b70062-3824-4a87-bf23-6ce56972d47b",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2cef72a1-4bb9-4422-a101-91373bdc26d7",
+              "name": "retry_count",
+              "value": "={{ ($json.retryCount ?? 0) + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -448,
+        48
+      ],
+      "id": "df0a17b4-df5f-4a3d-b01d-378c9b050b45",
+      "name": "Retry Count1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fd81e966-bac5-4275-a23b-d5ec835e4bf5",
+              "leftValue": "={{ $json.retry_count }}",
+              "rightValue": 4,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -224,
+        48
+      ],
+      "id": "d426779e-3ae6-4103-a7c3-a7c96d5fb2f9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "errorMessage": "an error has ocurred!"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a54f430a-f564-44cd-a93c-453c23e7b9c0",
+      "name": "Stop and Error1"
+    },
+    {
+      "parameters": {
+        "content": "# 🤖 *AI Delta Response System Setup*\n\n\n---\n\n\n## 📋 **Start Here**\n\n\n### 1. Create a new n8n Database called **`bot`** with columns:\n\n- ✅ **`contact`** - *stores contact id*\n- ✅ **`message`** - *stores message*\n\n### 2. Select the database in all **five database nodes** and paste variables as shown in the photos on the right side. \n\n> ⚠️ Make sure all nodes point to the same database\n\n### 3. Add your **Claude API key** to the AI node. & **Gemini API** (as backup)\n\n> 💡Get your key from: [claude.ai/api](https://claude.ai/api)\n> 💡Go to Google AI Studio: Visit aistudio.google.com/app/apikey\n\n\n---\n\n## 🚀 **GHL Snapshot Deployment**\n\n\n### 1.  Push Snapshot to GHL\n\nDeploy the GHL Snapshot in sub-location:\n\n\n[**🔗 Click here to access the GHL Snapshot**](https://affiliates.gohighlevel.com/?fp_ref=expertbots&share=AZDL99exHk9RyTBnr96P)\n\n### 2. Add n8n production Webhook URL in custom value “n8n_ai_bot_webhook”\n\n### 3. Configure the trigger for workflow “AI Bot - Opt-in” this is going to be how users opt-in to the bot.\n\n### 4. Configure “AI Follow-up Trigger” workflow by adding a trigger, usually a “stale lead” trigger works best in \"new lead\" stage.\n\n## ⚙️ **n8n Custom Field Configuration**\n\n\n### 1. Assistant Chat Field\n\nFind Custom Field ID for **`Assistantchat Last Message`**\n\nClick on \"Execute Workflow\", selecting \"from Manual\" to Get your custom field ID for \"Assistantchat Last Message\", then ad the ID to the node \"Edit Fields\" along with Private Integration Key & Location ID\n\n> 💡Private key found in GHL Settings > Private Integrations\n> 💡Location ID found in GHL Settings > Business Profile\n\n\n### 2. Calendar Integration\n\nLocate your **Calendar IDs**:\n\n- Go to GHL Settings > Calendar Settings\n- Ensure All Calendars have an assigned team member and are active ⚠️ IMPORTANT ⚠️\n- Copy Calendar IDs (main booking calendar + AI follow up calendar)\n- Add to **Edit Fields** node in n8n\n\n\n### 3. Time Zone Setup\n\n- Find your GHL account's timezone in GHL Settings > Business Profile (e.g., `America/New_York`)\n- Add to **Edit Fields** node in n8n\n- Change timezone in n8n workflow settings to match\n\n\n---\n\n\n## 💬 **System Prompt Configuration**\n\n\n🧠 Add your custom **system prompt** in the AI Agent node.\n\n##  🎉 **You're all set!** Your n8n bot workflow is ready to go!",
+        "height": 1792,
+        "width": 720
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        1600
+      ],
+      "id": "9bbc7c0e-051a-4997-845b-4c307b301843",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fh9vv0YRTuN9zdaQ",
+          "mode": "list",
+          "cachedResultName": "bot",
+          "cachedResultUrl": "/projects/UYhk0gq0bExYowC6/datatables/Fh9vv0YRTuN9zdaQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact",
+              "keyValue": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "message": "={{ $('Get Existing Messages').item.json.message }}. {{ $('Webhook').item.json.body['User Last Message'] }}"
+          },
+          "matchingColumns": [
+            "contact"
+          ],
+          "schema": [
+            {
+              "id": "contact",
+              "displayName": "contact",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        832
+      ],
+      "id": "0412f63f-5577-46fa-83e1-688836d1c7e0",
+      "name": "Update message",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "# *Features*\n\n💬 Multi-message intelligence\n\n🔧 Auto error recovery\n\n🔔 Proactive follow-ups\n\n⚡ Connect to any 3rd Party API\n\n👤 Auto Human handoff\n\n🤖 Any LLM\n\n📅 Native booking\n\n🔴 Self-service DND\n\n☰ Full prompt control\n\n🔗 Integrates with your tech stack\n\n🌐 Omni-channel\n\n🕐 Timezone aware\n\n📍 Full contact's journey awareness\n\n🧠 Unlimited Knowledge base (Vector)",
+        "height": 624,
+        "width": 448,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1504,
+        1600
+      ],
+      "id": "1885f5ff-fe63-4f49-9bd4-11c72add9f53",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the input data\nconst items = $input.all();\n\n// Initialize variable\nlet targetId = null;\n\n// Loop through the input (typically just 1 item)\nfor (const item of items) {\n  \n  // 1. Access the 'fields' array specifically from your JSON structure\n  const allFields = item.json.fields || [];\n\n  // 2. Find the field where fieldKey matches 'contact.assistantchat_last_message'\n  const matchedField = allFields.find(field => field.fieldKey === 'contact.assistantchat_last_message');\n\n  // 3. If found, save the ID\n  if (matchedField) {\n    targetId = matchedField.id;\n    break; // Stop looking once found\n  }\n}\n\n// Return the result\nreturn {\n  json: {\n    name: 'assistantchat_last_message',\n    id: targetId || \"NOT_FOUND\" \n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        1424
+      ],
+      "id": "6c57206f-27f9-4ac3-9550-17d2854925bb",
+      "name": "Scrape ID"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').item.json.body.contact_id }}",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -112,
+        672
+      ],
+      "id": "3dd4139c-b16f-4cb3-8378-665b583f2de7",
+      "name": "Chat History"
+    },
+    {
+      "parameters": {
+        "url": "=https://services.leadconnectorhq.com/objects/contact",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "locationId",
+              "value": "AAkH7HElm4P71031tOqB"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer pit-c91b932f-dc30-450c-beb0-665d3eab1cd7"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -752,
+        1424
+      ],
+      "id": "c55d15c8-bf68-4112-9679-4b7818375992",
+      "name": "Get Custom Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        1424
+      ],
+      "id": "3d77aa92-7d7c-44da-b4ee-c51fba7ecd3a",
+      "name": "Manual"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3696,
+        1408
+      ],
+      "id": "e1d8df0e-3a31-478b-ab9e-9be0e90f0954",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "rd01BERYgYzjBMRb",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        3488,
+        1088
+      ],
+      "id": "0fe1c5a7-141c-45c1-8c29-80bf714e3d11",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "value": "vector_store_key",
+          "mode": "list"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        3232,
+        928
+      ],
+      "id": "1f0c24d3-545d-4db6-b520-a6a436f202bd",
+      "name": "Insert Data to Store"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "knowledge_base",
+        "toolDescription": "Use this knowledge base to answer questions from the user",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        4112,
+        1136
+      ],
+      "id": "cd70b4c3-6b47-4f39-ad01-e3b4cedca079",
+      "name": "Query Data Tool"
+    },
+    {
+      "parameters": {
+        "content": "### Embeddings\n\nThe Insert and Retrieve operation use the same embedding node.\n\nThis is to ensure that they are using the **exact same embeddings and settings**.\n\nDifferent embeddings might not work at all, or have unintended consequences.\n",
+        "height": 240,
+        "width": 320,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3840,
+        1376
+      ],
+      "typeVersion": 1,
+      "id": "d1f3f1b0-a209-431b-80db-0b9fef6b1392",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "### Readme\nLoad your data into a vector database with the 📚 **Load Data** flow, and then use your data as chat context with the 🐕 **Retriever** flow.\n\n**Quick start**\n1. Click on the `Execute Workflow` button to run the 📚 **Load Data** flow.\n2. Click on `Open Chat` button to run the 🐕 **Retriever** flow. Then ask a question about content from your document(s)\n\n\nFor more info, check [our docs on RAG in n8n](https://docs.n8n.io/advanced-ai/rag-in-n8n/).",
+        "height": 300,
+        "width": 440,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2512,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "6258278a-d5bd-4de1-9eff-5e7d0f1e0cac",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "### 📚 Load Data Flow",
+        "height": 460,
+        "width": 700,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2992,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "a57c74c5-a511-48bb-90e8-038033be800f",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "### 🐕 2. Retriever Flow",
+        "height": 460,
+        "width": 680,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3776,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "bb3e45dc-2c7f-4e88-abd1-12d732c9a64b",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1456,
+        1504
+      ],
+      "id": "28db8538-edda-4743-b772-4f753a01364b",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "rd01BERYgYzjBMRb",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-5-20250929",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4.5"
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        3968,
+        1120
+      ],
+      "id": "2932a145-ecff-405c-9714-580f4a470fe8",
+      "name": "Anthropic Chat Model2",
+      "credentials": {
+        "anthropicApi": {
+          "id": "8pDxPQeMuCs2pcpm",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 12
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -288,
+        1024
+      ],
+      "id": "c9abb568-fc5d-49cd-a7f8-1f8b68bf7f7a",
+      "name": "Wait 12 Seconds",
+      "webhookId": "a897756c-72c7-463a-8bf1-d81280b6d2f5"
+    },
+    {
+      "parameters": {
+        "toolDescription": "If the user say don't want you to message them anymore two times , respond exactly with: \"No worries, we will remove you from our list, thank you\" and use the dnd_contact tool",
+        "method": "PUT",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $('Webhook').item.json.body.contact_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"tags\": [\n        \"dnd gpt\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        512,
+        1392
+      ],
+      "id": "efd3bc73-cd89-4327-aebd-6e47956328d7",
+      "name": "dnd_contact tool"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Always use to book appointments in the calendar for the user AFTER using the \"get_calendar_slots tool\". Since you can only book on available slots.\n\nImportant: You do not have the ability to cancel or reschedule appointments for users, you must escalate to a human in order to do that.\n\nWe must have the user's name AND email or phone number at least in order to book an appointment for them. If those are not available please ask before booking the appointment.",
+        "method": "POST",
+        "url": "=https://services.leadconnectorhq.com/calendars/events/appointments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            },
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "startTime",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', `ISO 8601 datetime format: YYYY-MM-DDTHH:MM:SS±HH:MM\nExample: 2026-01-20T14:30:00-05:00`, 'string') }}"
+            },
+            {
+              "name": "calendarId",
+              "value": "={{ $('Edit Fields').item.json.calendar_id }}"
+            },
+            {
+              "name": "locationId",
+              "value": "={{ $('Edit Fields').item.json.location_id }}"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        1040,
+        1392
+      ],
+      "id": "cb668577-b014-48b5-ba8f-8a559b8c0315",
+      "name": "book_appointment tool"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-6",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4.6"
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        1232
+      ],
+      "id": "db8e6dc4-603b-43db-88f3-509033d2e6cc",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "8pDxPQeMuCs2pcpm",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-6",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4.6"
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        -976,
+        384
+      ],
+      "id": "96f6118c-0a34-4b0a-a10a-4df6b5b86e5e",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "8pDxPQeMuCs2pcpm",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $('Webhook').item.json.body.contact_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"customFields\": [\n    {\n      \"id\": \"{{ $('Edit Fields').item.json.custom_field_id_assistant_chat_last_message }}\",\n      \"field_value\": {{ JSON.stringify($('AI Agent').item.json.output) }}\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1264,
+        1088
+      ],
+      "id": "eb0d2b2b-13e0-42ff-b104-177a175a4f9f",
+      "name": "Update Assistant Chat Last Message",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $('Webhook').item.json.body.contact_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"customFields\": [\n    {\n      \"id\": \"{{ $('Edit Fields').item.json.custom_field_id_assistant_chat_last_message }}\",\n      \"field_value\": {{ JSON.stringify($('Follow Up Agent').item.json.output) }}\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -400,
+        272
+      ],
+      "id": "9e7e4f97-bdfb-4a3c-b018-7a8c02319bb9",
+      "name": "Update Assistant Chat Last Message1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fh9vv0YRTuN9zdaQ",
+          "mode": "list",
+          "cachedResultName": "bot",
+          "cachedResultUrl": "/projects/UYhk0gq0bExYowC6/datatables/Fh9vv0YRTuN9zdaQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact",
+              "keyValue": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        },
+        "limit": 1
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        928
+      ],
+      "id": "1353d558-58ca-4a24-bb39-95bc3bf5c830",
+      "name": "Get Existing Messages",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fh9vv0YRTuN9zdaQ",
+          "mode": "list",
+          "cachedResultName": "bot",
+          "cachedResultUrl": "/projects/UYhk0gq0bExYowC6/datatables/Fh9vv0YRTuN9zdaQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact",
+              "keyValue": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        160,
+        1024
+      ],
+      "id": "137962c4-746b-4153-82a2-59f9fe2cf709",
+      "name": "Delete Old Message Row",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use to book a future follow up when the user wants to be followed up at a later date. Default to 10am unless the user prefers a different time.\n\nAlways confirm the date with the user first before using the tool.",
+        "method": "POST",
+        "url": "=https://services.leadconnectorhq.com/calendars/events/appointments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "startTime",
+              "value": "={{ $fromAI(\"startTime_datetime\", \"Date and time in format YYYY-MM-DDTHH:MM:SS for the appointment slot\") }}-{{ $fromAI(\"startTime_offset\", \"Timezone offset as HH:MM, numbers only without plus or minus sign\") }}"
+            },
+            {
+              "name": "calendarId",
+              "value": "={{ $('Edit Fields').item.json.ai_follow_up_calendar_id }}"
+            },
+            {
+              "name": "locationId",
+              "value": "={{ $('Edit Fields').item.json.location_id }}"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Webhook').item.json.body.contact_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        688,
+        1376
+      ],
+      "id": "80ee7788-b05a-4bab-a1e2-9a1f7236cbc0",
+      "name": "future_follow_up tool"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use to escalate the conversation to a human when needed. Such as resolving a problem you do not have the tools for or a request from the user to escalate the conversation.",
+        "method": "POST",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $('Webhook').item.json.body.contact_id }}/tags",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"tags\": [\n        \"human\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        1216,
+        1392
+      ],
+      "id": "9f0073ca-acfc-4be3-8c2d-d2b76e835364",
+      "name": "human_escalation tool"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        384
+      ],
+      "id": "fcd696d7-c324-4004-a988-83a1456999b5",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PMI4mj1wtkVstzRi",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        432,
+        1232
+      ],
+      "id": "bb5c170c-3ea1-4c2c-b76b-ff6073f0d518",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PMI4mj1wtkVstzRi",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Retrieve information about X",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        1344,
+        1376
+      ],
+      "id": "05ce71dc-03b6-455b-8e8b-761ebe3eaf0f",
+      "name": "knowledge_database tool"
+    },
+    {
+      "parameters": {
+        "content": "## Update message\n\ncontact (string)\n\nEQUALS\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body.contact_id }}\n\n_____________________________________\n\nValues to update > message\n\n### COPY THIS --> \n\n{{ $('Get Existing Messages').item.json.message }}. {{ $('Webhook').item.json.body['User Last Message'] }}",
+        "height": 448,
+        "width": 368,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        576,
+        1840
+      ],
+      "id": "c5cd4648-ea19-4203-a34d-342ecfe4399a",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Get Existing Messages\n\ncontact (string)\n\nEQUALS\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body.contact_id }}",
+        "height": 240,
+        "width": 496,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        1952
+      ],
+      "id": "ae812c36-127f-446d-a48d-5d836c1ceab6",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Create Message\n\ncontact:\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body.contact_id }}\n\n_____________________________________\n\nmessage:\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body['User Last Message'] }}\n\n",
+        "height": 384,
+        "width": 368,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        1824
+      ],
+      "id": "b3a36223-a25b-4d3e-8398-147d0ddc1b8b",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## Get full message\n\ncontact (string)\n\nEQUALS\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body.contact_id }}",
+        "height": 256,
+        "width": 368,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        3232
+      ],
+      "id": "fa8585ae-9ee6-4d0f-a47d-1c4b0ae67c71",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## Delete old message row\n\ncontact (string)\n\nEQUALS\n\n### COPY THIS --> \n\n{{ $('Webhook').item.json.body.contact_id }}",
+        "height": 240,
+        "width": 368,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        2240
+      ],
+      "id": "a72ce2fe-4c18-4e16-9bad-206c3761e189",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "![Alt Text](https://storage.googleapis.com/msgsndr/qQt47vgUmPtlF177q98t/media/6928d3ca9637ed3df836c952.png)",
+        "height": 1088,
+        "width": 1952,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        2176
+      ],
+      "id": "977cc5e5-4b8b-4a3e-bc4a-b6519ae4e219",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# 🗃️ Vector Database Setup",
+        "height": 1008,
+        "width": 2048
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2464,
+        656
+      ],
+      "id": "e9f85a75-fa59-4c63-a6c1-ea525a145e35",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "## Important - Our system has 8 main tags: \n\n**“ai optin”**: When this tag gets added to a contact from the “AI Bot - Opt-in” workflow, it signals the bot to reply to that lead every time the message you. \n\n**“dnd gpt”**: When this tag gets added either manually or by the AI, it will stop all communications from the AI bot to the contact. \n\n**“ai follow up”**: When this tag gets added from the  “AI Follow-up Trigger” workflow it signals the n8n workflow to follow up with the contact. You can adjust the frequency in the GHL workflow. \n\n**\"human\"**: Gets added when the AI wants to escalate or hand-off the conversation to the human. It also, adds the \"dnd gpt\" tag to it. \n\n**\"facebook\"**: Means they are chatting in Facebook Messenger with the bot.\n\n**\"instagram\"**: Means they are chatting in Instagram DMs with the bot.\n\n**\"sms\"**: Means they are chatting in SMS with the bot.\n\n**\"whatsapp\"**: Means they are chatting in WhatsApp with the bot.\n\n> 💡**Follow up defaults to 1 daily message for 4 days after trigger. Then it waits 4 days until allowing users back into the follow up workflow.**\n\n### ⚠️ IMPORTANT: If using bookings for leads, make sure your \"booked appointment\" workflow removes them from the follow up stage in your pipeline and/or also add the \"dnd gpt\" tag so the bot does not keep talking to them. ",
+        "height": 800,
+        "width": 448,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1504,
+        2240
+      ],
+      "id": "3067a0b0-be41-4081-bcd3-81775d63e6d5",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=<identity>\nYou are Val, an expert executive assistant with 15 years of experience. \n</identity>\n\n<context>\nThis is the current date and time: {{$today.weekdayLong}} {{$now}}  \nCurrent Epoch Millisecond:{{ Date.now() }}\nTimezone: {{ $('Edit Fields').item.json.account_timezone }}\nTotal Days in current month: {{ new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() }}\n\nUser Information:\nFull Name: {{ $('Webhook').item.json.body.full_name }}\nEmail: {{ $('Webhook').item.json.body.email }}\nPhone number: {{ $('Webhook').item.json.body.phone }}\n\n</context>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        4112,
+        912
+      ],
+      "id": "fb1c5c67-27be-4bd5-846d-97a8f4de7bba",
+      "name": "AI Agent Bench",
+      "retryOnFail": false,
+      "maxTries": 5,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Get full message').item.json.message }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=<identity>\n\nYou are [bot name] an AI sales representative working on behalf of [company name]\n\nDefault tone: Witty, playful tone that disarms objections and keeps prospects engaged. Use humor strategically to build rapport, reduce resistance, and make the conversation enjoyable - turning potential friction into friendly banter. Keep your tone measured and confident, avoiding excessive enthusiasm.\n\n</identity>\n\n<company_identity>\n\nCompany Name: [COMPANY NAME]\n[ADD COMPANY INFO]\n\n</company_identity>\n\n<goal>\nYour primary objective is to qualify prospects and guide them to the right solution through a strategic conversation that leads to [end result. Ex. Book an appointment, send a booking link, Make a sale, etc.]\n</goal>\n\n<context>\n\nYou are chatting with users from our chat widget where users opt-in to speak to you are in different places: Our website, Instagram, Facebook, SMS.\n\nThe user might have tags added to their contact here's what they mean:\n- Platform specific means they are chatting from that channel: \"sms\", \"instagram\", \"facebook\"\n- Once they opt-in to speak wit you: \"ai optin\"\n\n\n=== DATE CONTEXT ===\nTimezone: {{ $now.zoneName }}\nTimezone Offset: {{ $now.toFormat('ZZ') }}\nCurrent Date: {{ $now.toFormat('cccc, MMMM d, yyyy') }}\nCurrent Time: {{ $now.toFormat('h:mm a ZZZZ') }}\nDays in current month ({{ $now.toFormat('MMMM') }}): {{ $now.endOf('month').day }}\nLast day of month: {{ $now.endOf('month').toFormat('MMMM d, yyyy') }}\nNext month: {{ $now.plus({months: 1}).toFormat('MMMM yyyy') }}\nDays in next month: {{ $now.plus({months: 1}).endOf('month').day }}\nUpcoming days:\n\n{{ $now.plus({days: 1}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 2}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 3}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 4}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 5}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 6}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 7}).toFormat('cccc, MMMM d') }}\n\nUser Information:\nFull Name: {{ $('Webhook').item.json.body.full_name }}\nEmail: {{ $('Webhook').item.json.body.email }}\nPhone number: {{ $('Webhook').item.json.body.phone }}\nUser tags: {{ $('Webhook').item.json.body.tags }}\n\n</context>\n\n<important_information>\nKeep responses concise. Match the prospect's energy.\nNever assume, always ask.\nNever use em dashes in your responses \"-\"\n\nCONVERSATION ENERGY MANAGEMENT:\nMonitor and match their energy:\n- High energy/excited → Move fast, compress steps\n- Analytical/careful → Provide more details, slow down\n- Skeptical/guarded → Lead with proof, less pushy\n- Confused/overwhelmed → Simplify, one thing at a time\n- Ready to buy → Skip education, go straight to close\n\nMAXIMUM ATTEMPT RULES:\n- Price objection handled 2 times max (then accept they're not ready)\n\n<conversation_flow_flexibility>\n\nCRITICAL: ADAPTIVE CONVERSATION FRAMEWORK\n\nThe conversation_steps are your navigation map, not a rigid script. Think of them as waypoints toward the destination, not mandatory checkpoints you must hit in order.\n\nCORE PRINCIPLES:\n1. **Follow the Flow, Not the Script**\n   - Use the steps as intent guides, not word-for-word templates\n   - If a user jumps ahead, meet them where they are\n   - If they answer future questions early, skip those steps\n   - Natural conversation always beats perfect process\n\n2. **Situational Awareness Triggers**\n   - User gives partial info → Acknowledge and dig deeper\n   - User asks a different question → Answer it, then guide back\n   - User shows urgency → Fast-track to their need\n   - User is confused → Slow down and clarify\n   - User is engaged → Keep momentum going\n   - User is resistant → Back off pressure, provide value\n\n3. **Dynamic Step Navigation**\n   Examples of when to adapt:\n   - User opens with \"I need help getting leads\" → Skip greeting small talk, jump to qualification\n   - User says \"I run a plumbing business and get 200 leads but can't handle them\" → Skip business type AND lead volume questions, go straight to AI agent discussion\n   - User immediately asks \"How much?\" → Address price, THEN circle back to understand their needs\n   - User mentions competitor → Pivot to differentiation before continuing flow\n\n4. **Conversation State Intelligence**\n   Always maintain awareness of:\n   - What the user has already told you (never ask twice)\n   - Their emotional temperature (excited, skeptical, confused, urgent)\n   - Their sophistication level (novice vs experienced marketer)\n   - Their buying signals (ready to move vs researching)\n   - Their primary pain point (use this as your North Star)\n\n5. **Flexible Response Patterns**\n   Adapt your approach based on user type:\n   - Fast decision maker → Compress the flow, get to the point\n   - Analytical type → Provide more details, anticipate technical questions\n   - Relationship builder → More rapport, personal touches\n   - Skeptical prospect → Lead with proof and credibility\n   - Confused lead → Simplify and educate\n\n6. **Smart Step Combinations**\n   When it makes sense, combine steps:\n   - Greeting + Business type question in one flow\n   - Qualification + Video permission together\n   - Video send + Follow-up question immediately\n\n7. **Recovery Patterns**\n   When conversation goes off-track:\n   - Acknowledge their concern/question genuinely\n   - Provide helpful response\n   - Bridge back: \"That's a great point, and it actually relates to...\"\n   - Resume flow from most relevant step, not where you left off\n\nBEHAVIORAL PRIORITIES:\n1. User experience > Process perfection\n2. Contextual relevance > Sequential completion  \n3. Natural flow > Forced transitions\n4. Value delivery > Quick closes\n5. Understanding their needs > Pushing your agenda\n\nThink like a skilled salesperson having a genuine conversation, not a chatbot following a flowchart. The steps give you structure, but your situational awareness and adaptability create success.\n</conversation_flow_flexibility>\n\nIf the user sends a question as the first message ever in the conversation, still greet them and tell them who you are, just like a regular conversation.\n\nIf the user answers questions that you were going to ask later in the conversational flow, do not ask them again.\n\nCRITICAL GUIDELINES:\n- Never break character.\n- You cannot help with irrelevant queries outside of your scope of work (e.g., \"how can I bake a cake?\") - politely redirect back to the regular conversation steps.\n\nMAINTAINING PLAYFUL ENERGY:\n- Use humor to diffuse tension, not to mock or belittle\n- Match the visitor's energy - if they're serious, be professionally playful\n- Analogies should be relatable (Netflix, coffee, root canals, etc.)\n- Self-deprecating humor works well (\"Magic. Just kidding...\")\n- Keep it light but always professional\n- Avoid excessive enthusiasm - no need for exclamation marks unless truly warranted\n- If someone seems offended, immediately pivot to straightforward helpfulness\n- The goal is to make them smile while solving their problem\n- Maintain a confident, conversational tone without being overly excited\n\n</important_information>\n\n<conversational_style_guideline>\n- Keep your writing style simple and concise.\n- Use clear and straightforward language.\n- Write short, impactful sentences.\n- Maintain a measured, confident tone - avoid excessive enthusiasm or exclamation marks.\n- Use wit and playfulness to disarm objections and keep conversations light.\n- Deploy humor strategically to build rapport and reduce resistance.\n- Use relatable analogies and metaphors when they help explain concepts (but avoid clichés).\n- Organize ideas with bullet points for better readability.\n- Add frequent line breaks to separate concepts.\n- Use active voice and avoid passive constructions.\n- Focus on practical and actionable insights.\n- Support points with specific examples, personal anecdotes, or data.\n- Pose thought-provoking questions to engage the reader.\n- Address the reader directly using \"you\" and \"your.\"\n- Skip introductory phrases like \"in conclusion\" or \"in summary.\"\n- Do not include warnings, notes, or unnecessary extras—stick to the requested output.\n- Avoid hashtags, semicolons, emojis, and asterisks.\n- Refrain from using adjectives or adverbs excessively.\n- Limit exclamation marks to genuine surprise or when truly warranted.\n\nWords to Avoid:\nAccordingly, Additionally, Arguably, Certainly, Consequently, Hence, However, Indeed, Moreover, Nevertheless, Nonetheless, Notwithstanding, Thus, Undoubtedly, Adept, Commendable, Dynamic, Efficient, Ever-evolving, Exciting, Exemplary, Innovative, Invaluable, Robust, Seamless, Synergistic, Thought-provoking, Transformative, Utmost, Vibrant, Vital, Efficiency, Innovation, Institution, Integration, Implementation, Landscape, Optimization, Realm, Tapestry, Transformation, Aligns, Augment, Delve, Embark, Facilitate, Maximize, Underscores, Utilize, A testament to…, In conclusion…, In summary…, It's important to note/consider…, It's worth noting that…, On the contrary.\n</conversational_style_guideline>\n\n<conversation_steps>\n\n1. GREETING:\nStart warm and casual. Build rapport before business.\n\n- Thank them for reaching out or connecting\n- Ask how their day is going (keep it brief)\n- Acknowledge their response\n- Ask what brought them in today / what they're looking for / how you can help\n\nKeep it conversational. One question at a time. Wait for responses.\n\n2. IDENTIFY INTENT:\nBased on their response, determine what they need:\n\n3. SMART QUALIFICATION:\nAsk questions to understand their situation and match them to the right solution.\n\n4. PRESENT THE RIGHT SOLUTION:\nBased on qualification, recommend the best fit.\n\n5. HANDLE QUESTIONS & OBJECTIONS:\nAnswer questions directly, then guide back to next step.\n\n6. THE CLOSE:\nTailor based on business type and offer.\n\n7. BOOKING SEQUENCE:\nUse when scheduling appointments, services, or calls.\n\nStep 1 - Establish Date:\n\"What day works best for you?\" \nor suggest options: \"We have availability [day] and [day] - which works better?\"\n\n[Wait for response]\n\nStep 2 - Establish Time:\n\"[Day] works great. What time is best for you?\"\nor if business has set hours: \"We have openings at [time] and [time] - what works for you?\"\n\n[Wait for response]\n\nStep 3 - Confirm Details:\n\"Perfect - [Day] at [Time]. Should I lock that in for you?\"\n\n[Wait for confirmation]\n\nStep 4 - Finalize Booking:\n\"You're all set for [Day] at [Time]. You'll receive a confirmation [text/email] shortly.\"\n\nFor home services, confirm address:\n\"And just to confirm, the service address is [address] - correct?\"\n\nStep 5 - Open for Questions:\n\"Anything else you need before then?\"\n\n8. POST-BOOKING / POST-SALE:\nAfter booking or completing a sale:\n\n- Confirm what they can expect next (confirmation, preparation instructions, shipping, etc.)\n- Offer to answer any remaining questions\n- Thank them warmly\n- If relevant, mention how to reach out if anything changes\n\n</conversation_steps>\n\n<objection_handling_database>\n\n# Price & Budget Objections\n\n\"This is just too expensive!\" I understand. When you say expensive, is that compared to another service or just more than you had budgeted? Most clients find the long-term results make it the less costly decision.\n\n\"We don't have the money for this.\" Budget is always a key factor. If funding wasn't an issue, is this the solution you'd want? We can explore how other clients have funded it to achieve [their desired outcome].\n\n\"I need to check my finances.\" Of course. When you say check finances, do you mean figuring out *if* funds are available, or just deciding *where* to pull them from (e.g., savings vs. credit)?\n\n\"This is just too expensive for us right now.\" I understand timing is key. Which do you feel is more risky: finding the funds to solve the problem for good, or going with a cheaper option that might not work and leaves you in the same spot?\n\n\"There is no budget allocation left for this year, maybe next year, call back then.\" Understood on the budget cycle. What's the potential cost of leaving this problem unsolved for another 5+ months? Sometimes it's less risky to find the funds now than to wait.\n\n\"You're more expensive than our current vendor.\" That could be true. Is the primary goal to find the lowest price, or to get the best possible results? It's usually a trade-off.\n\n\"Can you give me a better price, we had another quote that was cheaper.\" Is getting the lowest price the main goal, or is it solving the problem for good? We can always adjust a solution to fit a budget, but it often means a trade-off in results.\n\n\"I've never done this before, that's more money than I've ever spent.\" I understand it feels like a big step. Which is more risky: making the investment to achieve [their goal], or staying where you are financially for the next 5 years?\n\n\"We are still 'price shopping'.\" Makes sense. Are you looking for the cheapest option, or the best long-term value? Often the lowest price can cost more down the road.\n\n\"I don't want to go into debt.\" I agree on avoiding consumer debt. This is different—it's an investment in an asset designed to make you more money than it costs. Do you see the difference?\nStalls & Delay Objections\n\n\"I need to think it over.\" Of course. Usually when someone needs to think it over, it's about either the budget or the timing. Does either of those ring a bell for you? No pressure at all.\n\n\"I'm just so busy, can you just call me back?\" I get it, my schedule's packed too. Instead of a random call that we'll likely miss, let's book a specific time. Do you have your calendar handy?\n\n\"I'll get back to you or we will get back to you.\" Sounds good. So we don't play phone tag, let's book a specific time. (After booking) Great, just so I'm prepared, what will you be going over in your mind?\n\n\"I'll get back to you on this.\" No problem. Let's book a quick follow-up so we don't play phone tag. Before we go, what specifically did you want to look over, so I can have any info ready for you?\n\n\"I want to make sure it's the right time for me to focus on this.\" Good timing is key. How many hours a week do you feel this would need? Also, if not now, when do you see yourself having the time to solve [their problem]?\n\n\"I just have way too many things going on, can you give me a call back later?\" I get it, my schedule is packed too. Instead of a random callback, let's book a concrete time so we don't miss each other. Do you have your calendar handy?\n\n\"I never make rash decisions.\" I agree, this shouldn't be a rash decision. Let's book a follow-up for [Day]. Just so I'm prepared, what key things will you be reviewing in your mind between now and then?\n\n# Third-Party & Authority Objections\n\n\"I need to talk to my spouse or partner.\" Makes perfect sense. Is there any specific info I can send over to help make that conversation easier for you both?\n\n\"I need to pray about it.\" I completely respect that. When you pray on it, what specific part of this will you be focusing on? That helps me understand what's most important to you.\n\n\"I make the decisions around here, we don't need to talk to anyone else in the company.\" I have no doubt about that. My question is more about who else on the team would be involved in the day-to-day *use* or *implementation*? Just want to ensure a smooth process for everyone.\n\n\"I need to ask my mom/brother/financial advisor...\" Makes sense to get a second opinion. Is your [mom/advisor] an expert in [your specific industry]? Sometimes advice from non-experts, while well-intentioned, can hold us back from our goals.\n\n# Lack of Need / Interest Objections\n\n\"I'm going to try and do this myself.\" I respect the DIY approach. Which seems less risky: spending the time and money to figure out the technical parts from scratch, or using a proven system to get it right the first time?\n\n\"I don't know if I have the time.\" That's a valid concern. How many hours a week did you think this would require? It's designed for busy people and usually only takes [X hours] to get results.\n\n\"I don't know what I need to improve.\" That's fair. But if you had to pick one thing about your current situation that you *feel* could be even a little bit better, what would it be?\n\n\"I don't need the product/service.\" No problem. And just so you know, I'm not even sure we could help you yet. Would you be against a 2-minute chat to find out? If not, we'll know for sure.\n\n\"Not interested.\" No problem, I get it. Would you be against a 30-second explanation of what we do? If it's not a fit after that, we can part ways.\n\n\"I don't want to commit to anything.\" I understand not wanting to be locked in. Which feels more risky right now: committing to a solution to fix [their problem], or not committing and letting that problem continue to cost you?\n\n# Trust & Fear Objections\n\n\"Well, I've tried several programs that just haven't worked for me.\" I hear you. So I understand, what specifically was missing from those other programs? We find most failures come down to [common issue like support], which is exactly what we fixed.\n\n\"I saw some negative reviews about your company online.\" Thanks for the honesty. We have thousands of clients, and with a 99.8% success rate, a few unhappy voices are inevitable. What would that high success rate mean to you?\n\n\"If I buy this, I could lose my job.\" That's a serious concern, and I hear you. What specific part of this implementation worries you the most? Let's talk about how we mitigate that exact risk.\n\n\"I'm worried this might not work out.\" That's a valid feeling. It's working for all our other clients, so what's the one thing you're worried might prevent it from working out for *you* specifically?\n\n\"Can you give me any guarantees?\" We can definitely cover that. Tell me, what's behind that question? Just want to understand what's most important for you to feel secure.\n\n\"Is this a scam?\" I appreciate the direct question. When you say 'scam,' what's your main concern? Usually that fear comes from getting bad advice from the wrong people in the past.\n\n\"I just have this fear that it won't work out for me.\" Fear is completely normal with a big decision. Given that it's working for our other clients, what is the one specific thing you're afraid might go wrong for you?\n\n\"It sounds too good to be true.\" I get why you'd feel that way. But that saying, 'if it sounds too good to be true, it probably is,' was created to keep people safe, not to help them get ahead. Our results are real, and we have the clients to prove it.\n\n\"Can you just give this to me for free, and once I make money I will pay you back?\" I appreciate the offer, but we can't operate a business that way. Have you considered that the mindset of wanting valuable things for free might be what's holding you back from making the investment needed to succeed?\n\n# Competitive & Comparison Objections\n\n\"Send me some references.\" Happy to. So I connect you with the right person, what specifically would you like to ask them? Assuming they give a great review, what would our next step be?\n\n\"I'm so busy can you just send me a quote?\" No problem. To make sure it's accurate, can you tell me quickly about your current setup? Once I send it, if it meets your needs, what's the next step on your end?\n\n\"Can you send me some information?\" Absolutely. So I can send the most relevant info instead of a generic brochure, what's the #1 thing you're hoping to learn about?\n\n\"Can you send me a proposal?\" I'd be happy to, but I can't build a useful proposal without knowing more about your situation. Are you open to a quick 5-min chat so I can create something that actually solves your problem?\n\n\"I already have a coach/mentor!\" That's great you're investing in yourself! If you're not yet getting the results you want, would you be open to seeing how our approach is different?\n\n\"I'm happy with my current vendor/company.\" That's great! We often work with clients who are happy overall but are looking for an extra edge specifically in [one specific area, e.g., lead quality]. No pressure to switch, just an option to enhance.\n\n\"I don't know if it will work for what we do/for our industry.\" That's a good question. What specific part are you concerned might not fit your industry? I can show you how we solved that exact issue for another company in your space.\n\n\"I'm already speaking with another company.\" That's smart to explore your options. I'm not even sure if we're a fit yet, but would you be open to a quick chat just to compare approaches? You may find you're better off with them, and that's okay.\n\n\"What's different about your company compared to others...\" Good question. To be honest, maybe nothing. I'd first need to understand a bit about your current situation to see if we could even help. Can you tell me what you're using now for [X]?\n\n\"I want to compare prices with another vendor.\" That's a smart approach. Hypothetically, if both our prices were identical, what would be the deciding factor for you?\n\n\"I can get the same thing somewhere else.\" You might be right, and I'm not even sure we can help you yet. What's the main problem you're trying to solve right now?\n\n\"I want to speak to other companies first.\" That's a smart way to do it. If every company came back with the exact same price, what would be the #1 thing that would make you choose one over the other?\n\n\"We already use vendor X, why should we go with you?\" Good question, and honestly, I'm not sure you should yet. I'd need to learn more about what you're doing with Vendor X to see if we could even improve on it. You might be better off staying put.\n\n</objection_handling_database>\n\n<knowledge_database>\n\nFAQs\n\nQ1:\nA1:\n\nQ2:\nA2:\n\nQ3\nA3:\n\nQ4:\nA4:\n\nQ5:\nA5:\n\n</knowledge_database>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        512,
+        1024
+      ],
+      "id": "d531b366-19ab-46b4-87eb-9c5e50415358",
+      "name": "AI Agent",
+      "retryOnFail": false,
+      "maxTries": 5,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=follow up",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=<identity>\nYou are a follow-up assistant.\n\nYou will follow up with the user as they were interested in our services.\n</identity>\n\n<context>\n\nTimezone: {{ $now.zoneName }}\nTimezone Offset: {{ $now.toFormat('ZZ') }}\nCurrent Date: {{ $now.toFormat('cccc, MMMM d, yyyy') }}\nCurrent Time: {{ $now.toFormat('h:mm a ZZZZ') }}\nDays in current month ({{ $now.toFormat('MMMM') }}): {{ $now.endOf('month').day }}\nLast day of month: {{ $now.endOf('month').toFormat('MMMM d, yyyy') }}\nNext month: {{ $now.plus({months: 1}).toFormat('MMMM yyyy') }}\nDays in next month: {{ $now.plus({months: 1}).endOf('month').day }}\nUpcoming days:\n\n{{ $now.plus({days: 1}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 2}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 3}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 4}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 5}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 6}).toFormat('cccc, MMMM d') }}\n{{ $now.plus({days: 7}).toFormat('cccc, MMMM d') }}\n\nUser Information:\nFull Name: {{ $('Webhook').item.json.body.full_name }}\n\n</context>\n\nTone:Concerned and friendly because they did not book an appointment.\n\n<goal>\n\nThe goal is to incite them to continue the conversation so we can help them.\n\n</goal>\n\n<important_information>\n\nOnly reply with your message and reply with completely different messages every time.  When the user replies with \"follow up\" just reply with your follow up message.\n\n</important_information>\n\n<follow_up_sequences>\n\nFOLLOW-UP SEQUENCES:\nIf conversation goes cold or they need time:\n\nAfter sending information:\nCheck back in 15-30 minutes to an hour\n\"Hey [Name], did you get a chance to look that over?\"\n\nIf they went quiet mid-conversation:\n\"Hey [Name], just circling back - did you still want to [book/order/schedule]? Happy to help whenever you're ready.\"\n\nIf they said they'd think about it:\n\"Hey [Name], just checking in - any questions I can answer to help you decide?\"\n\nBe helpful, not pushy. One follow-up at a time.\n\nInitial Reminder:\nHi [Name], I hope this message finds you well. I wanted to gently remind you about [Topic/Proposal] we discussed. I’m here for any questions you might have.\n\nValue Proposition Reinforcement:\nHello [Name], I thought it might be helpful to share a little more about how [Product/Service] can help you with [specific benefit]. Let's chat?\n\nSoft Follow-up:\nHi [Name], just floating to the top of your inbox in case you missed my last message. I’m here when you’re ready to chat!\n\nResource Sharing:\nHello [Name], I came across this [article/video] about [relevant topic] and immediately thought of you. Would love to hear your thoughts on it!\n\nAvailability Update:\nHi [Name], I have some openings this week to discuss [Topic/Proposal]. Can I schedule a call or meeting at a time that works for you?\n\nCasual Check-in:\nHey [Name], how’s everything going? Just checking in to see if you had any thoughts on our last conversation about [Topic/Proposal].\n\nPersonalized Touch:\nHi [Name], I remember you mentioned [personal detail] the last time we spoke. How did that go? Also, I’d love to pick back up on our conversation when you're available.\n\nTime-Sensitive Prompt:\nHello [Name], just a heads-up that we’re approaching the deadline for [time-sensitive offer/deal]. I wouldn’t want you to miss out. Can we chat soon?\n\nHumorous Nudge:\nHi [Name], if you’ve been abducted by aliens, just ignore this message. Otherwise, I’d love to hear back from you about [Topic/Proposal]. 😄\"\n\nGentle Closure:\nHello [Name], I understand you’re super busy, but I don’t want to miss the chance to assist you with [Topic/Proposal]. If it’s not the right time, no worries at all.\n\nOffer Assistance:\nHi [Name], is there anything you’re uncertain about or anything I can clarify regarding [Topic/Proposal]? I’m here to help!\"Social Proof\n\"Hello [Name], many of our clients are seeing [specific result] with [Product/Service]. I’d love to show you how you can achieve similar results.\n\nFinal Polite Attempt:\nHi [Name], I don’t want to take much of your time. Just reaching out one last time to see if you’re interested in [Topic/Proposal]. I'm here if you change your mind!\n\nOther:\nHave you given up on [result the wanted]?\n\n</follow_up_sequences>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -992,
+        144
+      ],
+      "id": "7d4d5148-27ca-4989-94b6-508a7738a84b",
+      "name": "Follow Up Agent",
+      "retryOnFail": false,
+      "maxTries": 5,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## 💡LLM Usage Price Comparison.\n\n*FYI: Claude models usually speak more like a human, that's why we prefer them, but always test since models keep evolving.*\n\n### *Model --> Usage Cost Per Lead* (based on 10k token prompt size & average 12 messages per lead)\n*Claude 4.5 Sonnet*\t--> $0.80\n*Gemini 3 Pro (with caching)*\t--> $0.22\n\n>💡 Savings:\tGemini is ~3x cheaper (Save $0.26 per lead)\n\n\n",
+        "height": 288,
+        "width": 768,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2288,
+        1600
+      ],
+      "id": "3337abf9-7e19-41ee-830b-02c475d3107a",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Use to find available calendar slots.\n\nMust always use to find appointment slots available before booking an appointment.\n\nIf only a \"traceId\" is returned and no dates, means there are no available slots in the timeframe requested. If so, then offer another timeframe.",
+        "url": "=https://services.leadconnectorhq.com/calendars/{{ $('Edit Fields').item.json.calendar_id }}/free-slots",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "startDate",
+              "value": "={{ DateTime.fromISO($fromAI('startDate', '2026-01-06T09:00:00', 'string')).toMillis() }}"
+            },
+            {
+              "name": "endDate",
+              "value": "={{ DateTime.fromISO($fromAI('endDate', '2026-01-06T17:00:00', 'string')).toMillis() }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.private_integration }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        848,
+        1392
+      ],
+      "id": "3a3db97a-72ca-439c-83e4-d707fd82a2b5",
+      "name": "get_calendar_slots tool"
+    }
+  ],
+  "pinData": {
+    "Manual": [
+      {
+        "json": {}
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.srv1113775.hstgr.cloud",
+            "user-agent": "axios/1.13.2",
+            "content-length": "1903",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "traceparent": "00-c5362191a4f349fb0ee128de88862e45-57cc41ec0fc27ae1-00",
+            "x-forwarded-for": "34.28.18.227",
+            "x-forwarded-host": "n8n.srv1113775.hstgr.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "b71e8d5ce198",
+            "x-real-ip": "34.28.18.227"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "Monthly marketing spend?": "Under $50k",
+            "What would 10x your business?": "kmm",
+            "assistantchat last message": "Hey Trajen, good to hear from you. How's your day going?",
+            "Website Screenshot": "",
+            "Your biggest bottleneck?": "Leads don't convert",
+            "How fast do you need results?": "ASAP (this month)",
+            "Company Type": "",
+            "Monthly revenue?": "Under $100k",
+            "magic link": "",
+            "User Last Message": "It's going well. Ate fish",
+            "web_url": "",
+            "Your #1 lead source today?": "Paid ads",
+            "demo context": "",
+            "marketing team size": "",
+            "contact_id": "DFXg19q4TDKMzPJl0JrF",
+            "first_name": "Trajen",
+            "last_name": "Womack",
+            "full_name": "Trajen Womack",
+            "email": "trey27704@gmail.com",
+            "phone": "+19196383451",
+            "tags": "ai optin,sms",
+            "country": "US",
+            "timezone": "America/New_York",
+            "date_created": "2026-02-24T22:20:29.689Z",
+            "contact_source": "Success Session",
+            "full_address": "",
+            "contact_type": "lead",
+            "location": {
+              "name": "Rinvas",
+              "address": " 30 N Gould St STE N",
+              "city": "Sheridan",
+              "state": "WY",
+              "country": "US",
+              "postalCode": "82801",
+              "fullAddress": " 30 N Gould St STE N, Sheridan WY 82801",
+              "id": "AAkH7HElm4P71031tOqB"
+            },
+            "message": {
+              "type": 2,
+              "body": "It's going well. Ate fish"
+            },
+            "workflow": {
+              "id": "737b7d35-fcc2-43f4-99da-c28e5a17aa04",
+              "name": "AI Bot - Base Triggers (Lead Reply)"
+            },
+            "triggerData": {},
+            "contact": {
+              "attributionSource": {
+                "sessionSource": "Other",
+                "medium": "conversation"
+              },
+              "lastAttributionSource": {
+                "sessionSource": "Direct traffic",
+                "url": "https://rinvas.com/pricing-3977",
+                "utmSource": null,
+                "utmMedium": null,
+                "utmContent": null,
+                "utmTerm": null,
+                "utmKeyword": null,
+                "utmMatchtype": null,
+                "referrer": null,
+                "gclid": null,
+                "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+                "ip": "4.18.205.131",
+                "gaClientId": null,
+                "gaSessionId": null,
+                "medium": "calendar",
+                "mediumId": "RJesM1SiHZwPXgMKPGlM",
+                "adName": null,
+                "adGroupId": null,
+                "adId": null,
+                "gbraid": null,
+                "wbraid": null
+              }
+            },
+            "attributionSource": {},
+            "customData": {}
+          },
+          "webhookUrl": "https://n8n.srv1113775.hstgr.cloud/webhook/fe696ec2-ea68-446e-ab1a-3e0d2ce3eaab22dssdsds",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Key?": {
+      "main": [
+        [
+          {
+            "node": "Update message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Status2": {
+      "main": [
+        [
+          {
+            "node": "Update Assistant Chat Last Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Retry Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1 minute": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Status": {
+      "main": [
+        [
+          {
+            "node": "Update Assistant Chat Last Message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Retry Count1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1 minute1": {
+      "main": [
+        [
+          {
+            "node": "Follow Up Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Follow Up Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Existing Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Message": {
+      "main": [
+        [
+          {
+            "node": "Wait 12 Seconds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get full message": {
+      "main": [
+        [
+          {
+            "node": "Delete Old Message Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry Count": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 1 minute",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry Count1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 1 minute1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat History": {
+      "ai_memory": [
+        [
+          {
+            "node": "Follow Up Agent",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Custom Fields": {
+      "main": [
+        [
+          {
+            "node": "Scrape ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual": {
+      "main": [
+        [
+          {
+            "node": "Get Custom Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Query Data Tool",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Data Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent Bench",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "knowledge_database tool",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Bench",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 12 Seconds": {
+      "main": [
+        [
+          {
+            "node": "Get full message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dnd_contact tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "book_appointment tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Follow Up Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Existing Messages": {
+      "main": [
+        [
+          {
+            "node": "Message Key?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Old Message Row": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "future_follow_up tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "human_escalation tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Follow Up Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Status2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Follow Up Agent": {
+      "main": [
+        [
+          {
+            "node": "Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_calendar_slots tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "knowledge_database tool": {
+      "ai_tool": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 3600,
+    "availableInMCP": false
+  },
+  "versionId": "278f7357-ae80-471f-aad2-4532915ff773",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b8e20af4bc7e576694cda010455d2adbe2b6c8b35d87ce5ef4059ce056c1e082"
+  },
+  "id": "nWv7ujpGnwPO2YDu",
+  "tags": []
+}
