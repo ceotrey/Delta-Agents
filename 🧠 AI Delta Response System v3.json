@@ -198,7 +198,7 @@
             {
               "id": "ee93a817-467a-4298-b605-3e89c536f645",
               "name": "private_integration",
-              "value": "pit-c91b932f-dc30-450c-beb0-665d3eab1cd7",
+              "value": "YOUR_GHL_PRIVATE_INTEGRATION_TOKEN",
               "type": "string"
             },
             {
@@ -736,7 +736,7 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer pit-c91b932f-dc30-450c-beb0-665d3eab1cd7"
+              "value": "Bearer YOUR_GHL_PRIVATE_INTEGRATION_TOKEN"
             }
           ]
         },
